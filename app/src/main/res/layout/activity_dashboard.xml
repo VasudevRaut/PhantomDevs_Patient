@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserScreens.Dashboard">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="4dp"
+            android:outlineAmbientShadowColor="@color/white"
+            android:outlineSpotShadowColor="@color/white"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/user_image"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+
+                    android:layout_marginTop="13dp"
+                    app:cardCornerRadius="50dp"
+
+                    >
+
+                    <ImageView
+                        android:id="@+id/account"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/profilelefttop"></ImageView>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/userName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="20dp"
+                    android:paddingLeft="80dp"
+
+                    android:layout_toEndOf="@id/user_image"
+                    android:fontFamily="sans-serif"
+                    android:text="Dashboard"
+
+                    android:textColor="#1BC2EC"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/userName"-->
+
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:fontFamily="sans-serif"-->
+                <!--                    android:gravity="center"-->
+                <!--                    android:textAlignment="center"-->
+                <!--                    android:padding="16dp"-->
+                <!--                    android:text="Home"-->
+                <!--                    android:textColor="#0482FF"-->
+                <!--                    android:textSize="25sp"-->
+                <!--                    android:textStyle="bold" />-->
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/dishes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar"
+            android:background="@color/white"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <!--                <TextView-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="25dp"-->
+                <!--                    android:layout_marginEnd="25dp"-->
+                <!--                    android:fontFamily="@font/jacques_francois"-->
+                <!--                    android:text="Hii Vasudev"-->
+                <!--                    android:textSize="25dp"-->
+                <!--                    android:textStyle="bold">-->
+
+                <!--                </TextView>-->
+
+                <!--                <TextView-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="25dp"-->
+                <!--                    android:layout_marginEnd="25dp"-->
+                <!--                    android:text="Good AfterNoon"-->
+                <!--                    android:textColor="#808080"-->
+                <!--                    android:textSize="18dp"-->
+                <!--                    android:textStyle="bold">-->
+                <!--                </TextView>-->
+
+
+
+
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="25dp"
+                    android:background="@drawable/searchboxbg"
+
+                    app:iconifiedByDefault="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:queryHint="Search lead..." />
+
+
+                <!-- TODO: Update blank fragment layout -->
+
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:id="@+id/scheduleAp"
+                            android:layout_width="match_parent"
+                            android:layout_height="170dp"
+                            android:layout_marginStart="18dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="18dp"
+                            android:background="@drawable/img">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="20dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/jacques_francois"
+                                android:text="Schedule an Appointment"
+                                android:textColor="@color/white"
+                                android:textSize="20dp"
+                                android:textStyle="bold">
+
+                            </TextView>
+
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.5"
+                                android:src="@drawable/schedule_ap">
+
+                            </ImageView>
+
+
+                        </LinearLayout>
+
+
+
+                        <LinearLayout
+                            android:id="@+id/medical"
+                            android:layout_width="match_parent"
+                            android:layout_height="170dp"
+                            android:layout_marginStart="18dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="18dp"                            android:background="@drawable/img">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="20dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/jacques_francois"
+                                android:text="Order Medicine"
+                                android:textColor="@color/white"
+                                android:textSize="20dp"
+                                android:textStyle="bold">
+
+                            </TextView>
+
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.5"
+                                android:src="@drawable/oder_med">
+
+                            </ImageView>
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/medicalHistory"
+                            android:layout_width="match_parent"
+                            android:layout_height="170dp"
+                            android:layout_marginStart="18dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="18dp"
+                            android:background="@drawable/img">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="20dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/jacques_francois"
+                                android:text="Nearest Hospital"
+                                android:textColor="@color/white"
+                                android:textSize="20dp"
+                                android:textStyle="bold">
+
+                            </TextView>
+
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.5"
+                                android:src="@drawable/nearest_hos">
+
+                            </ImageView>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/model"
+                            android:layout_width="match_parent"
+                            android:layout_height="170dp"
+                            android:layout_marginStart="18dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="18dp"
+                            android:background="@drawable/img">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="20dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/jacques_francois"
+                                android:text="Personalised Assistant"
+                                android:textColor="@color/white"
+                                android:textSize="20dp"
+                                android:textStyle="bold">
+
+                            </TextView>
+
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.5"
+                                android:src="@drawable/symtom_an">
+
+                            </ImageView>
+
+
+                        </LinearLayout>
+
+
+
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

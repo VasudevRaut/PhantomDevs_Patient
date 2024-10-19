@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/slider1"
+    tools:context=".Slider1">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="500dp"
+       android:orientation="vertical">
+
+      <TextView
+          android:id="@+id/title"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Join our awesome community"
+          android:textStyle="bold"
+          android:textSize="23sp"
+          android:textAlignment="center"/>
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="30dp"
+          android:text="uhfksjf hklfh fhefiiti4 tou5iou4tioug gklhgfkhlrtoretiugkhfgkh itiogrkh grhkg retiog khlgrkhg higriohg  ewruiefufeuh "
+          android:textAlignment="center"/>
+
+<!--      <Button-->
+<!--          android:id="@+id/login_button"-->
+<!--          android:layout_width="match_parent"-->
+<!--          android:layout_height="wrap_content"-->
+<!--          android:layout_marginLeft="20dp"-->
+<!--          android:layout_marginTop="30dp"-->
+<!--          android:layout_marginRight="20dp"-->
+<!--          android:background="@drawable/button_round_bg2"-->
+<!--          android:text="Sign In"-->
+<!--          android:textAllCaps="false"-->
+<!--          android:textSize="20sp"-->
+<!--          android:textStyle="bold" />
+-->
+      <com.google.android.material.button.MaterialButton
+          android:id="@+id/slider1"
+          android:layout_width="match_parent"
+          android:layout_height="70dp"
+          android:layout_marginLeft="60dp"
+          android:layout_marginTop="30dp"
+          android:layout_marginRight="60dp"
+          android:text="Next"
+          android:textAllCaps="false"
+          android:textSize="20sp"
+          android:textAlignment="center"
+          android:textStyle="bold"
+          app:backgroundTint="@color/black"
+          app:cornerRadius="13dp"
+          app:rippleColor="@color/white"
+          android:textColor="@color/white" />
+
+
+   </LinearLayout>
+
+
+
+</LinearLayout>
