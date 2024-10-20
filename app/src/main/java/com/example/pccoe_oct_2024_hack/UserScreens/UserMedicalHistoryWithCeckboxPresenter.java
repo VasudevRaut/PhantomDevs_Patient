@@ -45,12 +45,12 @@ public class UserMedicalHistoryWithCeckboxPresenter extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<UserMedicalHistoryDTO> userList = new ArrayList<>();
         // Add data to the userList
-        userList.add(new UserMedicalHistoryDTO(false));
-        userList.add(new UserMedicalHistoryDTO(false));
-        userList.add(new UserMedicalHistoryDTO(false));
-        userList.add(new UserMedicalHistoryDTO(false));
-        userList.add(new UserMedicalHistoryDTO(false));
-        userList.add(new UserMedicalHistoryDTO(false));
+//        userList.add(new UserMedicalHistoryDTO(false));
+//        userList.add(new UserMedicalHistoryDTO(false));
+//        userList.add(new UserMedicalHistoryDTO(false));
+//        userList.add(new UserMedicalHistoryDTO(false));
+//        userList.add(new UserMedicalHistoryDTO(false));
+//        userList.add(new UserMedicalHistoryDTO(false));
 
         UserMedicalHistoryWithCheckBoxAdapter userAdapter = new UserMedicalHistoryWithCheckBoxAdapter(this,userList, new UserMedicalHistoryWithCheckBoxAdapter.OnItemClickListener() {
             @Override

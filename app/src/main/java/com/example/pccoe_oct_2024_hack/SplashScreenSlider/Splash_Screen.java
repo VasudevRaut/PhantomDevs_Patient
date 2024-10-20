@@ -32,8 +32,8 @@ public class Splash_Screen extends AppCompatActivity {
         if (sharedPrefsHelper.getObject("user_data", User.class) != null) {
             User savedUser = sharedPrefsHelper.getObject("user_data", User.class);
 
-            String mobile = savedUser.getEmail();
-            String pass = savedUser.getFirstName();
+            String mobile = savedUser.getUserEmail();
+            String pass = savedUser.getUserEmail();
 
             if (!mobile.equals("") && !pass.equals("")) {
                 Intent intent = new Intent(Splash_Screen.this, Dashboard.class);

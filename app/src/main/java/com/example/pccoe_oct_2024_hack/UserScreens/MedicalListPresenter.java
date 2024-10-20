@@ -54,7 +54,7 @@ public class MedicalListPresenter extends AppCompatActivity {
         MedicalAdapter userAdapter = new MedicalAdapter(userList, new MedicalAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(MedicalDTO user) {
-                Intent intent = new Intent(MedicalListPresenter.this, SlotBookingPresenter.class);
+                Intent intent = new Intent(MedicalListPresenter.this, UplodeDocumentView.class);
                 startActivity(intent);
             }
 

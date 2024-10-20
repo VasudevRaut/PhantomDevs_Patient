@@ -13,4 +13,18 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="cl_black">#FFFFFF</color>
+    <color name="cl_green">#3fd18c</color>
+    <color name="cl_faint_green">#20aa98</color>
+    <color name="grey">#80768899</color>
+    <color name="red">#d22338</color>
+
+    <color name="light_green_500">#8BC34A</color>
+    <color name="overlay_dark_30">#4D000000</color>
+    <color name="light_green_600">#22E22A</color>
+    <color name="bg_color">#FCFDFD</color>
+    <color name="colorPrimary_sec">#757575</color>
+    <!--    <color name="green">#43A047</color>-->
+    <color name="secondary_white">#d5d5d5</color>
 </resources>

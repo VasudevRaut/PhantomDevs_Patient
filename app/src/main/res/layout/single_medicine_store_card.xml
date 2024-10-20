@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="-5dp"
-        android:background="#AE590A">
+        android:background="#f5fafe">
 
         <androidx.cardview.widget.CardView
 
@@ -103,7 +103,7 @@
                         android:layout_marginBottom="-15dp"
                         android:numStars="1"
                         android:progressBackgroundTint="@color/white"
-                        android:progressTint="#AE590A"
+                        android:progressTint="#f5fafe"
                         android:rating="4"
                         android:scaleX="0.5"
                         android:scaleY="0.5" />

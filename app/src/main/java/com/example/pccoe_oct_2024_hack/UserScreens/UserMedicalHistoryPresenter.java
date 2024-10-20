@@ -1,5 +1,6 @@
 package com.example.pccoe_oct_2024_hack.UserScreens;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,7 +16,13 @@ import com.example.pccoe_oct_2024_hack.Adapters.UserAdapter;
 import com.example.pccoe_oct_2024_hack.Adapters.UserMedicalHistoryAdapter;
 import com.example.pccoe_oct_2024_hack.DTO.User;
 import com.example.pccoe_oct_2024_hack.DTO.UserMedicalHistoryDTO;
+import com.example.pccoe_oct_2024_hack.Database.ReportManager;
 import com.example.pccoe_oct_2024_hack.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import androidx.appcompat.widget.SearchView;
 
 import java.util.ArrayList;
@@ -31,6 +38,7 @@ public class UserMedicalHistoryPresenter extends AppCompatActivity {
     private RadioGroup selectModeRadioGroup;
     private RadioButton selectReadRadioButton, selectWriteRadioButton;
     private List<UserMedicalHistoryDTO> selectedHistory;
+    public UserMedicalHistoryAdapter userAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,34 +56,52 @@ public class UserMedicalHistoryPresenter extends AppCompatActivity {
         // Set up RecyclerView with a layout manager (e.g., LinearLayoutManager)
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<UserMedicalHistoryDTO> userList = new ArrayList<>();
-        // Add data to the userList
-        userList.add(new UserMedicalHistoryDTO(false));
-        userList.add(new UserMedicalHistoryDTO(false));
-        userList.add(new UserMedicalHistoryDTO(false));
-        userList.add(new UserMedicalHistoryDTO(false));
-        userList.add(new UserMedicalHistoryDTO(false));
-        userList.add(new UserMedicalHistoryDTO(false));
 
-        UserMedicalHistoryAdapter userAdapter = new UserMedicalHistoryAdapter(this,userList, new UserMedicalHistoryAdapter.OnItemClickListener() {
+        new ReportManager().getAllData(new OnSuccessListener<QuerySnapshot>() {
             @Override
-            public void onItemClick(UserMedicalHistoryDTO user) {
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-            }
-        }, new UserMedicalHistoryAdapter.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(UserMedicalHistoryDTO userMedicalHistoryDTO, boolean isChecked) {
-                if(isChecked){
-                    selectedHistory.add(userMedicalHistoryDTO);
-                }
-                else{
-                    selectedHistory.remove(userMedicalHistoryDTO);
-                }
+
+                userList.addAll(queryDocumentSnapshots.toObjects(UserMedicalHistoryDTO.class));
+                userAdapter = new UserMedicalHistoryAdapter(UserMedicalHistoryPresenter.this,userList, new UserMedicalHistoryAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(UserMedicalHistoryDTO user) {
+
+                    }
+                }, new UserMedicalHistoryAdapter.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(UserMedicalHistoryDTO userMedicalHistoryDTO, boolean isChecked) {
+                        if(isChecked){
+                            selectedHistory.add(userMedicalHistoryDTO);
+                        }
+                        else{
+                            selectedHistory.remove(userMedicalHistoryDTO);
+                        }
 //                Toast.makeText(UserMedicalHistoryPresenter.this, ""+isChecked, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                recyclerView.setAdapter(userAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(UserMedicalHistoryPresenter.this));
+            }
+        }, new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
             }
         });
 
-        recyclerView.setAdapter(userAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        // Add data to the userList
+//        userList.add(new UserMedicalHistoryDTO(false));
+//        userList.add(new UserMedicalHistoryDTO(false));
+//        userList.add(new UserMedicalHistoryDTO(false));
+//        userList.add(new UserMedicalHistoryDTO(false));
+//        userList.add(new UserMedicalHistoryDTO(false));
+//        userList.add(new UserMedicalHistoryDTO(false));
+
+
+
+
         // Set up an adapter for the RecyclerView
         // recyclerView.setAdapter(yourAdapter);
 

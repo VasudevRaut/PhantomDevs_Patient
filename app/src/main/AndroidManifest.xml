@@ -2,8 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +19,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Health_Shastra"
         tools:targetApi="31">
+        <activity
+            android:name=".UserScreens.ImageViewerView"
+            android:exported="false" />
+        <activity
+            android:name=".UserScreens.DisplayPDFView"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrationAndLogin.SignUp"
+            android:exported="false" />
+        <activity
+            android:name=".UserScreens.PersonalisedAssistant"
+            android:exported="false" />
+        <activity
+            android:name=".UserScreens.OrderesPlacedView"
+            android:exported="false" />
+        <activity
+            android:name=".UserScreens.MedicalListSharePresenter"
+            android:exported="false" />
+        <activity
+            android:name=".UserScreens.UplodeDocumentView"
+            android:exported="true" />
+        <activity
+            android:name=".UserScreens.SheduleAppointmentView"
+            android:exported="false" />
+        <activity
+            android:name=".UserScreens.HomeScreen"
+            android:exported="true" />
         <activity
             android:name=".UserScreens.MedicalListPresenter"
             android:exported="false" />
@@ -32,13 +63,7 @@
             android:exported="false" />
         <activity
             android:name=".UserScreens.Dashboard"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".RegistrationAndLogin.Login"
             android:exported="false" />
@@ -53,7 +78,13 @@
             android:exported="false" />
         <activity
             android:name=".SplashScreenSlider.Splash_Screen"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true" />

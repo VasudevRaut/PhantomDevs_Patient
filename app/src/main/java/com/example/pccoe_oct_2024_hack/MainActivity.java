@@ -111,67 +111,67 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void updateDocument() {
+//    private void updateDocument() {
         //         To update a user
-        User user = new User("John", "Doe", "john.doe@example.com");
+//        User user = new User("John", "Doe", "john.doe@example.com");
 
-        user.setEmail("new.email@example.com");
-        user.setFirstName("Chetan");
-        new UserManager().updateData(user, user.getEmail(),
-                new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("Firestore", "User successfully updated!");
-                    }
-                },
-                new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("Firestore", "Error updating user", e);
-                    }
-                }
-        );
-    }
+//        user.setEmail("new.email@example.com");
+//        user.setFirstName("Chetan");
+//        new UserManager().updateData(user, user.getEmail(),
+//                new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void aVoid) {
+//                        Log.d("Firestore", "User successfully updated!");
+//                    }
+//                },
+//                new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.w("Firestore", "Error updating user", e);
+//                    }
+//                }
+//        );
+//    }
 
-    private void addDocument() {
-         //Insert user into Firestore with email as document ID
-        User user = new User("John", "Doe", "john.doe@example.com");
-
-        new UserManager().addData(user, user.getEmail(),
-                new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(MainActivity.this, "supported", Toast.LENGTH_SHORT).show();
-
-                        Log.d("Firestore", "User successfully added!");
-                    }
-                },
-                new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(MainActivity.this, "not supported", Toast.LENGTH_SHORT).show();
-
-                        Log.w("Firestore", "Error adding user", e);
-                    }
-                }
-        );
-    }
-
-    private void deleteDocument() {
-        User user = new User("John", "Doe", "john.doe@example.com");
-
-        new AdminManager().deleteData(user.getEmail(), new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-
-            }
-        }, new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-            }
-        });
-    }
+//    private void addDocument() {
+//         //Insert user into Firestore with email as document ID
+//        User user = new User("John", "Doe", "john.doe@example.com");
+//
+//        new UserManager().addData(user, user.getEmail(),
+//                new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void aVoid) {
+//                        Toast.makeText(MainActivity.this, "supported", Toast.LENGTH_SHORT).show();
+//
+//                        Log.d("Firestore", "User successfully added!");
+//                    }
+//                },
+//                new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Toast.makeText(MainActivity.this, "not supported", Toast.LENGTH_SHORT).show();
+//
+//                        Log.w("Firestore", "Error adding user", e);
+//                    }
+//                }
+//        );
+//    }
+//
+//    private void deleteDocument() {
+//        User user = new User("John", "Doe", "john.doe@example.com");
+//
+//        new AdminManager().deleteData(user.getEmail(), new OnSuccessListener<Void>() {
+//            @Override
+//            public void onSuccess(Void unused) {
+//
+//            }
+//        }, new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//
+//            }
+//        });
+//    }
 
     private void getAllDataFromCollection() {
         // Create a new User DTO

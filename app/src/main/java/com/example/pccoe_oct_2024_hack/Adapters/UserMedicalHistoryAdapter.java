@@ -1,18 +1,27 @@
 package com.example.pccoe_oct_2024_hack.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.opengl.Visibility;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pccoe_oct_2024_hack.Adapters.Security.HelpUtil;
 import com.example.pccoe_oct_2024_hack.DTO.User;
 import com.example.pccoe_oct_2024_hack.DTO.UserMedicalHistoryDTO;
 import com.example.pccoe_oct_2024_hack.R;
+import com.example.pccoe_oct_2024_hack.UserScreens.DisplayPDFView;
+import com.example.pccoe_oct_2024_hack.UserScreens.ImageViewerView;
+import com.example.pccoe_oct_2024_hack.UserScreens.MedicalListSharePresenter;
 import com.example.pccoe_oct_2024_hack.UserScreens.UserMedicalHistoryPresenter;
 
 import java.util.List;
@@ -70,6 +79,37 @@ public class UserMedicalHistoryAdapter extends BaseAdapter<UserMedicalHistoryDTO
             }
         });
 
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(context, MedicalListSharePresenter.class);
+                context.startActivity(intent);
+            }
+        });
+
+        holder.imageviews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ImageViewerView.class);
+                HelpUtil helpUtil = new HelpUtil();
+                intent.putExtra("byteArrayKey", helpUtil.convertStringToByteArray(userMedicalHistory.getImage()));
+                context.startActivity(intent);
+            }
+        });
+
+        holder.pdfView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DisplayPDFView.class);
+                HelpUtil helpUtil = new HelpUtil();
+                Log.w("PDFData",userMedicalHistory.getPDF());
+                intent.putExtra("byteArrayKey", helpUtil.convertStringToByteArray(userMedicalHistory.getPDF()));
+                context.startActivity(intent);
+            }
+        });
+
+
+
     }
 
     public void selectAllItems(boolean isSelected) {
@@ -87,13 +127,17 @@ public class UserMedicalHistoryAdapter extends BaseAdapter<UserMedicalHistoryDTO
         TextView lastNameTextView;
         TextView emailTextView;
         CheckBox checkBox;
+        ImageView imageView;
+
+        LinearLayout imageviews,pdfView;
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
             checkBox =itemView.findViewById(R.id.checkBox);
-//            firstNameTextView = itemView.findViewById(R.id.firstNameTextView);
-//            lastNameTextView = itemView.findViewById(R.id.lastNameTextView);
-//            emailTextView = itemView.findViewById(R.id.emailTextView);
+            imageView = itemView.findViewById(R.id.share_icon);
+            imageviews = itemView.findViewById(R.id.card_image);
+            pdfView = itemView.findViewById(R.id.card_pdf);
+
         }
     }
 }
