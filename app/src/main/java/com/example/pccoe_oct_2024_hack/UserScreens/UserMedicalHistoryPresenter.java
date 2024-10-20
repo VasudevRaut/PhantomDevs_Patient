@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -21,6 +22,8 @@ import com.example.pccoe_oct_2024_hack.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import androidx.appcompat.widget.SearchView;
@@ -56,7 +59,10 @@ public class UserMedicalHistoryPresenter extends AppCompatActivity {
         // Set up RecyclerView with a layout manager (e.g., LinearLayoutManager)
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<UserMedicalHistoryDTO> userList = new ArrayList<>();
-
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(false)
+                .build();
+        FirebaseFirestore.getInstance().setFirestoreSettings(settings);
         new ReportManager().getAllData(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -130,7 +136,7 @@ public class UserMedicalHistoryPresenter extends AppCompatActivity {
                 // This line will execute when the checkbox is checked
                userAdapter.selectAllItems(true);
                selectedHistory.addAll(userList);
-                Toast.makeText(this, "Come", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "Come", Toast.LENGTH_SHORT).show();
             } else {
                 // This line will execute when the checkbox is unchecked
                 userAdapter.selectAllItems(false);
@@ -145,7 +151,8 @@ public class UserMedicalHistoryPresenter extends AppCompatActivity {
         Button shareButton = findViewById(R.id.shareButton);
         shareButton.setOnClickListener(v -> {
 
-                    Toast.makeText(this, "Slot: "  + " Mode: " , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Sucesss" , Toast.LENGTH_SHORT).show();
+
 
         });
 

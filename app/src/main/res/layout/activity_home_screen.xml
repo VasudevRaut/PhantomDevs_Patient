@@ -28,7 +28,7 @@
             android:layout_marginTop="25dp"
             android:layout_marginBottom="0dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="MySpace"
+            android:text="Health Shastra"
             android:textColor="@color/cl_green"
             android:textSize="30sp" />
 
@@ -201,7 +201,7 @@
                             android:background="@color/white"
                             android:scaleType="centerInside"
 
-                            android:src="@drawable/labimg"
+                            android:src="@drawable/appointmentimg"
                             app:shapeAppearanceOverlay="@style/ImageView.SmallRound" />
 
                         <LinearLayout
@@ -217,7 +217,7 @@
                                 android:layout_width="300dp"
                                 android:layout_height="wrap_content"
 
-                                android:text="Shedule Appointment "
+                                android:text="Scheduled Appointment "
                                 android:textColor="@color/black"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
@@ -277,7 +277,7 @@
                                 android:layout_width="300dp"
                                 android:layout_height="wrap_content"
 
-                                android:text="Medical"
+                                android:text="Medical Store"
                                 android:textColor="@color/black"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
@@ -382,7 +382,7 @@
                             android:layout_gravity="center_vertical"
                             android:background="@color/white"
                             android:scaleType="centerInside"
-                            android:src="@drawable/requvestimg"
+                            android:src="@drawable/assistence"
                             app:shapeAppearanceOverlay="@style/ImageView.SmallRound" />
 
                         <LinearLayout
@@ -398,7 +398,7 @@
                                 android:layout_width="300dp"
                                 android:layout_height="wrap_content"
 
-                                android:text="Personlized Assistence"
+                                android:text="Personlized Assistance"
                                 android:textColor="@color/black"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
@@ -441,7 +441,7 @@
                             android:layout_gravity="center_vertical"
                             android:background="@color/white"
                             android:scaleType="centerInside"
-                            android:src="@drawable/requvestimg"
+                            android:src="@drawable/recomendation"
                             app:shapeAppearanceOverlay="@style/ImageView.SmallRound" />
 
                         <LinearLayout

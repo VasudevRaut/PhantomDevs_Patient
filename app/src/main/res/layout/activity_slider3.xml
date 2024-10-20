@@ -26,7 +26,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="30dp"
-            android:text="uhfksjf hklfh fhefiiti4 tou5iou4tioug gklhgfkhlrtoretiugkhfgkh itiogrkh grhkg retiog khlgrkhg higriohg  ewruiefufeuh "
+            android:text="How to Join:
+
+Sign up or log in to your account.
+Navigate to the  tab.
+Click on  and start exploring! "
             android:textAlignment="center" />
 
         <!--      <Button-->

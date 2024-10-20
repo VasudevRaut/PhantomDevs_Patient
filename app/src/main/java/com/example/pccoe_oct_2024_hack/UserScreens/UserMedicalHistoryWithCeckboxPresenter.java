@@ -1,5 +1,6 @@
 package com.example.pccoe_oct_2024_hack.UserScreens;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,7 +16,13 @@ import android.widget.Toast;
 import com.example.pccoe_oct_2024_hack.Adapters.UserMedicalHistoryAdapter;
 import com.example.pccoe_oct_2024_hack.Adapters.UserMedicalHistoryWithCheckBoxAdapter;
 import com.example.pccoe_oct_2024_hack.DTO.UserMedicalHistoryDTO;
+import com.example.pccoe_oct_2024_hack.Database.ReportManager;
 import com.example.pccoe_oct_2024_hack.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +35,8 @@ public class UserMedicalHistoryWithCeckboxPresenter extends AppCompatActivity {
     private RadioGroup selectModeRadioGroup;
     private RadioButton selectReadRadioButton, selectWriteRadioButton;
     private List<UserMedicalHistoryDTO> selectedHistory;
+    public UserMedicalHistoryWithCheckBoxAdapter userAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,26 +61,43 @@ public class UserMedicalHistoryWithCeckboxPresenter extends AppCompatActivity {
 //        userList.add(new UserMedicalHistoryDTO(false));
 //        userList.add(new UserMedicalHistoryDTO(false));
 
-        UserMedicalHistoryWithCheckBoxAdapter userAdapter = new UserMedicalHistoryWithCheckBoxAdapter(this,userList, new UserMedicalHistoryWithCheckBoxAdapter.OnItemClickListener() {
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(false)
+                .build();
+        FirebaseFirestore.getInstance().setFirestoreSettings(settings);
+        new ReportManager().getAllData(new OnSuccessListener<QuerySnapshot>() {
             @Override
-            public void onItemClick(UserMedicalHistoryDTO user) {
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-            }
-        }, new UserMedicalHistoryWithCheckBoxAdapter.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(UserMedicalHistoryDTO userMedicalHistoryDTO, boolean isChecked) {
-                if(isChecked){
-                    selectedHistory.add(userMedicalHistoryDTO);
-                }
-                else{
-                    selectedHistory.remove(userMedicalHistoryDTO);
-                }
+
+                userList.addAll(queryDocumentSnapshots.toObjects(UserMedicalHistoryDTO.class));
+                userAdapter = new UserMedicalHistoryWithCheckBoxAdapter(UserMedicalHistoryWithCeckboxPresenter.this,userList, new UserMedicalHistoryWithCheckBoxAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(UserMedicalHistoryDTO user) {
+
+                    }
+                }, new UserMedicalHistoryWithCheckBoxAdapter.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(UserMedicalHistoryDTO userMedicalHistoryDTO, boolean isChecked) {
+                        if(isChecked){
+                            selectedHistory.add(userMedicalHistoryDTO);
+                        }
+                        else{
+                            selectedHistory.remove(userMedicalHistoryDTO);
+                        }
 //                Toast.makeText(UserMedicalHistoryPresenter.this, ""+isChecked, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                recyclerView.setAdapter(userAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(UserMedicalHistoryWithCeckboxPresenter.this));
+            }
+        }, new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
             }
         });
-
-        recyclerView.setAdapter(userAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         // Set up an adapter for the RecyclerView
         // recyclerView.setAdapter(yourAdapter);
 

@@ -1,5 +1,6 @@
 package com.example.pccoe_oct_2024_hack.UserScreens;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,10 +16,17 @@ import com.example.pccoe_oct_2024_hack.Adapters.UserMedicalHistoryAdapter;
 import com.example.pccoe_oct_2024_hack.DTO.DoctorDTO;
 import com.example.pccoe_oct_2024_hack.DTO.SlotDTO;
 import com.example.pccoe_oct_2024_hack.DTO.UserMedicalHistoryDTO;
+import com.example.pccoe_oct_2024_hack.Database.DoctorManager;
 import com.example.pccoe_oct_2024_hack.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DoctorPresenter extends AppCompatActivity {
     private SearchView searchView;
@@ -41,23 +49,30 @@ public class DoctorPresenter extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<DoctorDTO> userList = new ArrayList<>();
         // Add data to the userList
-        userList.add(new DoctorDTO());
-        userList.add(new DoctorDTO());
-        userList.add(new DoctorDTO());
-        userList.add(new DoctorDTO());
-        userList.add(new DoctorDTO());
-        userList.add(new DoctorDTO());
-
-        DoctorAdapter userAdapter = new DoctorAdapter(userList, new DoctorAdapter.OnItemClickListener() {
+        new DoctorManager().getAllData(new OnSuccessListener<QuerySnapshot>() {
             @Override
-            public void onItemClick(DoctorDTO user) {
-                Intent intent = new Intent(DoctorPresenter.this, SlotBookingPresenter.class);
-                startActivity(intent);
-            }
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
+                userList.addAll(queryDocumentSnapshots.toObjects(DoctorDTO.class));
+                DoctorAdapter userAdapter = new DoctorAdapter(userList, new DoctorAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(DoctorDTO user) {
+                        Intent intent = new Intent(DoctorPresenter.this, SlotBookingPresenter.class);
+                        startActivity(intent);
+                    }
+
+                });
+                recyclerView.setAdapter(userAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(DoctorPresenter.this));
+            }
+        }, new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
         });
-        recyclerView.setAdapter(userAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
         // Set up an adapter for the RecyclerView
         // recyclerView.setAdapter(yourAdapter);
 
@@ -83,4 +98,6 @@ public class DoctorPresenter extends AppCompatActivity {
         btnReview.setOnClickListener(v -> Toast.makeText(this, "Filter: Review", Toast.LENGTH_SHORT).show());
         btnPrice.setOnClickListener(v -> Toast.makeText(this, "Filter: Price", Toast.LENGTH_SHORT).show());
     }
+
+
 }

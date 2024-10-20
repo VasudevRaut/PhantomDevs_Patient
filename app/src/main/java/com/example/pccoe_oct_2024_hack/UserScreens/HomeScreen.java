@@ -73,7 +73,7 @@ public class HomeScreen extends AppCompatActivity {
         recomendatiion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeScreen.this, SheduleAppointmentView.class);
+                Intent intent = new Intent(HomeScreen.this, RecognitionView.class);
                 startActivity(intent);
             }
         });

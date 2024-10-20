@@ -41,20 +41,25 @@ public class MedicalAdapter extends BaseAdapter<MedicalDTO, MedicalAdapter.UserV
                 listener.onItemClick(user);  // Pass the clicked user back to the activity
             }
         });
+
+        holder.med_location.setText(user.getAddress());
+        holder.med_distance.setText(user.getDistance()+"");
+        holder.med_name.setText(user.getName());
+
         //set here value to lebel
     }
 
     // ViewHolder for User items
     static class UserViewHolder extends RecyclerView.ViewHolder {
-        TextView firstNameTextView;
-        TextView lastNameTextView;
-        TextView emailTextView;
+        TextView med_name;
+        TextView med_location;
+        TextView med_distance;
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
-//            firstNameTextView = itemView.findViewById(R.id.firstNameTextView);
-//            lastNameTextView = itemView.findViewById(R.id.lastNameTextView);
-//            emailTextView = itemView.findViewById(R.id.emailTextView);
+            med_name = itemView.findViewById(R.id.med_name);
+            med_location = itemView.findViewById(R.id.med_location);
+            med_distance = itemView.findViewById(R.id.med_distance);
         }
     }
 }

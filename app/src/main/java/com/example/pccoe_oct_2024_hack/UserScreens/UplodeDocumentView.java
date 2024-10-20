@@ -31,6 +31,8 @@ import com.example.pccoe_oct_2024_hack.Database.ReportManager;
 import com.example.pccoe_oct_2024_hack.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
 
@@ -209,12 +211,17 @@ public class UplodeDocumentView extends AppCompatActivity {
         // Format the date and time if needed
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formatted = current.format(formatter);
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(false)
+                .build();
+        FirebaseFirestore.getInstance().setFirestoreSettings(settings);
 
-
-        UserMedicalHistoryDTO userMedicalHistoryDTO = new UserMedicalHistoryDTO(formatted,"vasudevraut156@gmail1.com","vasudevraut156@gmail.com","somethingwrong","",new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),image,pdf);
+        String description = "Allergic reaction with skin rash and swelling.";
+        String dataString = "Patient had a reaction after consuming shellfish.";
+        UserMedicalHistoryDTO userMedicalHistoryDTO = new UserMedicalHistoryDTO(formatted,"vasudevraut156@gmail.com","vasudevraut156@gmail.com",description,dataString,new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),image,pdf);
         Log.w("USerData",pdf);
 
-        new ReportManager().addData(userMedicalHistoryDTO, "vasudevraut156@gmail.com", new OnSuccessListener<Void>() {
+        new ReportManager().addData(userMedicalHistoryDTO, "vasudevraut156@gmail1.com", new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Intent intent = new Intent(UplodeDocumentView.this, OrderesPlacedView.class);

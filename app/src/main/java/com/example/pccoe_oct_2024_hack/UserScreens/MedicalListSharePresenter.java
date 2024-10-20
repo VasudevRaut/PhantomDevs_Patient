@@ -1,5 +1,6 @@
 package com.example.pccoe_oct_2024_hack.UserScreens;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,8 +14,13 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.pccoe_oct_2024_hack.Adapters.MedicalAdapter;
+import com.example.pccoe_oct_2024_hack.Adapters.MedicalShareAdapter;
 import com.example.pccoe_oct_2024_hack.DTO.MedicalDTO;
+import com.example.pccoe_oct_2024_hack.Database.MedicalManager;
 import com.example.pccoe_oct_2024_hack.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,23 +45,29 @@ public class MedicalListSharePresenter extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<MedicalDTO> userList = new ArrayList<>();
         // Add data to the userList
-        userList.add(new MedicalDTO());
-        userList.add(new MedicalDTO());
-        userList.add(new MedicalDTO());
-        userList.add(new MedicalDTO());
-        userList.add(new MedicalDTO());
-        userList.add(new MedicalDTO());
-
-        MedicalAdapter userAdapter = new MedicalAdapter(userList, new MedicalAdapter.OnItemClickListener() {
+        new MedicalManager().getAllData(new OnSuccessListener<QuerySnapshot>() {
             @Override
-            public void onItemClick(MedicalDTO user) {
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                userList.addAll(queryDocumentSnapshots.toObjects(MedicalDTO.class));
+                MedicalShareAdapter userAdapter = new MedicalShareAdapter(userList, new MedicalShareAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(MedicalDTO user) {
+//                        Intent intent = new Intent(MedicalListSharePresenter.this, UplodeDocumentView.class);
+//                        startActivity(intent);
+                        showOrderConfirmationDialog();
+                    }
 
-                showOrderConfirmationDialog();
+                });
+                recyclerView.setAdapter(userAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(MedicalListSharePresenter.this));
             }
+        }, new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
 
+            }
         });
-        recyclerView.setAdapter(userAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         // Set up an adapter for the RecyclerView
         // recyclerView.setAdapter(yourAdapter);
 

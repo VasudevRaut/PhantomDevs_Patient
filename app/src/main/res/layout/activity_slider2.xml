@@ -26,7 +26,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="30dp"
-            android:text="uhfksjf hklfh fhefiiti4 tou5iou4tioug gklhgfkhlrtoretiugkhfgkh itiogrkh grhkg retiog khlgrkhg higriohg  ewruiefufeuh "
+            android:text="Why Join?
+
+Stay Informed: Get the latest updates, tips, and health news.
+Get Support: Connect with others and ask questions about your health journey.
+Exclusive Benefits"
             android:textAlignment="center" />
 
         <!--      <Button-->

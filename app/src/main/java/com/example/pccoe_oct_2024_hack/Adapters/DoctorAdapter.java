@@ -40,20 +40,29 @@ public class DoctorAdapter extends BaseAdapter<DoctorDTO, DoctorAdapter.UserView
                 listener.onItemClick(user);  // Pass the clicked user back to the activity
             }
         });
+        holder.name.setText(user.getDoctorName());
+        holder.address.setText(user.getDoctorAddress());
+        holder.education.setText(user.getDoctorAge()+"");
+        holder.charges.setText(String.valueOf(user.getDoctorFee())); // Convert to string if it's a number
+        holder.profession.setText(user.getDoctorType());
+
         //set here value to lebel
     }
 
     // ViewHolder for User items
     static class UserViewHolder extends RecyclerView.ViewHolder {
-        TextView firstNameTextView;
-        TextView lastNameTextView;
-        TextView emailTextView;
+        TextView name;
+        TextView address;
+        TextView education,charges,profession;
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
-//            firstNameTextView = itemView.findViewById(R.id.firstNameTextView);
-//            lastNameTextView = itemView.findViewById(R.id.lastNameTextView);
-//            emailTextView = itemView.findViewById(R.id.emailTextView);
+            name = itemView.findViewById(R.id.name);
+            address = itemView.findViewById(R.id.address);
+            education = itemView.findViewById(R.id.education);
+            charges = itemView.findViewById(R.id.charges);
+            profession = itemView.findViewById(R.id.profession);
+
         }
     }
 }

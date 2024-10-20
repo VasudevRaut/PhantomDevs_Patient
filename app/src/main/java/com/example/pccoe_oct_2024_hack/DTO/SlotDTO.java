@@ -4,6 +4,7 @@ public class SlotDTO {
     private String timeRange;
     private boolean isBooked;
 
+    public SlotDTO(){}
     public SlotDTO(String timeRange, boolean isBooked) {
         this.timeRange = timeRange;
         this.isBooked = isBooked;

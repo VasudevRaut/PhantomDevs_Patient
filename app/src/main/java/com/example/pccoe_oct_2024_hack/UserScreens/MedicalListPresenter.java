@@ -1,5 +1,6 @@
 package com.example.pccoe_oct_2024_hack.UserScreens;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,7 +15,13 @@ import com.example.pccoe_oct_2024_hack.Adapters.DoctorAdapter;
 import com.example.pccoe_oct_2024_hack.Adapters.MedicalAdapter;
 import com.example.pccoe_oct_2024_hack.DTO.DoctorDTO;
 import com.example.pccoe_oct_2024_hack.DTO.MedicalDTO;
+import com.example.pccoe_oct_2024_hack.DTO.SlotDTO;
+import com.example.pccoe_oct_2024_hack.Database.MedicalManager;
 import com.example.pccoe_oct_2024_hack.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,23 +51,29 @@ public class MedicalListPresenter extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<MedicalDTO> userList = new ArrayList<>();
         // Add data to the userList
-        userList.add(new MedicalDTO());
-        userList.add(new MedicalDTO());
-        userList.add(new MedicalDTO());
-        userList.add(new MedicalDTO());
-        userList.add(new MedicalDTO());
-        userList.add(new MedicalDTO());
-
-        MedicalAdapter userAdapter = new MedicalAdapter(userList, new MedicalAdapter.OnItemClickListener() {
+        new MedicalManager().getAllData(new OnSuccessListener<QuerySnapshot>() {
             @Override
-            public void onItemClick(MedicalDTO user) {
-                Intent intent = new Intent(MedicalListPresenter.this, UplodeDocumentView.class);
-                startActivity(intent);
-            }
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                userList.addAll(queryDocumentSnapshots.toObjects(MedicalDTO.class));
+                MedicalAdapter userAdapter = new MedicalAdapter(userList, new MedicalAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(MedicalDTO user) {
+                        Intent intent = new Intent(MedicalListPresenter.this, UplodeDocumentView.class);
+                        startActivity(intent);
+                    }
 
+                });
+                recyclerView.setAdapter(userAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(MedicalListPresenter.this));
+            }
+        }, new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
         });
-        recyclerView.setAdapter(userAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
         // Set up an adapter for the RecyclerView
         // recyclerView.setAdapter(yourAdapter);
 
@@ -86,4 +99,7 @@ public class MedicalListPresenter extends AppCompatActivity {
         btnReview.setOnClickListener(v -> Toast.makeText(this, "Filter: Review", Toast.LENGTH_SHORT).show());
 //        btnPrice.setOnClickListener(v -> Toast.makeText(this, "Filter: Price", Toast.LENGTH_SHORT).show());
     }
+
+
+
 }

@@ -100,7 +100,7 @@
                     android:id="@+id/text_users"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="User 1 and User 2"
+                    android:text="Hypertension with high blood pressure."
                     android:textSize="18sp"
                     android:padding="16dp"
                     android:textColor="@android:color/black" />
@@ -151,7 +151,7 @@
                         android:id="@+id/text_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sample PDF"
+                        android:text="View "
                         android:textSize="18sp"
                         android:layout_marginStart="16dp"
                         android:textColor="@android:color/black" />
@@ -188,7 +188,7 @@
                         android:id="@+id/text_pdf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sample PDF"
+                        android:text="View PDF"
                         android:textSize="18sp"
                         android:layout_marginStart="16dp"
                         android:textColor="@android:color/black" />
