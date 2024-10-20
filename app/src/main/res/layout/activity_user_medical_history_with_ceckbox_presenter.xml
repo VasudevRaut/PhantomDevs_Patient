@@ -25,7 +25,6 @@
         app:queryHint="Search lead..." />
 
     <LinearLayout
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginBottom="16dp"
@@ -68,6 +67,7 @@
     <!-- TODO: Update blank fragment layout -->
 
 
+
     <!-- Filter options (Nearest, Suggestion, Review, Price) -->
 
     <!-- RecyclerView for the content list below the filters -->
@@ -75,11 +75,9 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:layout_weight="1" />
-
+        android:layout_weight="1"
+        android:layout_marginTop="16dp" />
     <Button
-        android:visibility="gone"
         android:id="@+id/shareButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

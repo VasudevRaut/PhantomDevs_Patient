@@ -11,47 +11,50 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.pccoe_oct_2024_hack.Adapters.DoctorAdapter;
-import com.example.pccoe_oct_2024_hack.Adapters.UserMedicalHistoryAdapter;
+import com.example.pccoe_oct_2024_hack.Adapters.MedicalAdapter;
 import com.example.pccoe_oct_2024_hack.DTO.DoctorDTO;
-import com.example.pccoe_oct_2024_hack.DTO.SlotDTO;
-import com.example.pccoe_oct_2024_hack.DTO.UserMedicalHistoryDTO;
+import com.example.pccoe_oct_2024_hack.DTO.MedicalDTO;
 import com.example.pccoe_oct_2024_hack.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DoctorPresenter extends AppCompatActivity {
+public class MedicalListPresenter extends AppCompatActivity {
+
+
     private SearchView searchView;
     private RecyclerView recyclerView;
-    private Button btnNearest, btnSuggestion, btnReview, btnPrice;
+    private Button btnNearest, btnSuggestion, btnReview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_doctor_view);
+        setContentView(R.layout.activity_medical_list_presenter);
 
 
-        searchView = findViewById(R.id.searchView);
+
+
+        searchView = findViewById(R.id.searchView2);
         btnNearest = findViewById(R.id.btn_nearest);
         btnSuggestion = findViewById(R.id.btn_suggestion);
         btnReview = findViewById(R.id.btn_review);
-        btnPrice = findViewById(R.id.btn_price);
-        recyclerView = findViewById(R.id.recyclerView);
+//        btnPrice = findViewById(R.id.btn_price);
+        recyclerView = findViewById(R.id.recycler_for_leads);
 
         // Set up RecyclerView with a layout manager (e.g., LinearLayoutManager)
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        List<DoctorDTO> userList = new ArrayList<>();
+        List<MedicalDTO> userList = new ArrayList<>();
         // Add data to the userList
-        userList.add(new DoctorDTO());
-        userList.add(new DoctorDTO());
-        userList.add(new DoctorDTO());
-        userList.add(new DoctorDTO());
-        userList.add(new DoctorDTO());
-        userList.add(new DoctorDTO());
+        userList.add(new MedicalDTO());
+        userList.add(new MedicalDTO());
+        userList.add(new MedicalDTO());
+        userList.add(new MedicalDTO());
+        userList.add(new MedicalDTO());
+        userList.add(new MedicalDTO());
 
-        DoctorAdapter userAdapter = new DoctorAdapter(userList, new DoctorAdapter.OnItemClickListener() {
+        MedicalAdapter userAdapter = new MedicalAdapter(userList, new MedicalAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(DoctorDTO user) {
-                Intent intent = new Intent(DoctorPresenter.this, SlotBookingPresenter.class);
+            public void onItemClick(MedicalDTO user) {
+                Intent intent = new Intent(MedicalListPresenter.this, SlotBookingPresenter.class);
                 startActivity(intent);
             }
 
@@ -66,7 +69,7 @@ public class DoctorPresenter extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 // Handle search query
-                Toast.makeText(DoctorPresenter.this, "Searching for: " + query, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MedicalListPresenter.this, "Searching for: " + query, Toast.LENGTH_SHORT).show();
                 return false;
             }
 
@@ -81,6 +84,6 @@ public class DoctorPresenter extends AppCompatActivity {
         btnNearest.setOnClickListener(v -> Toast.makeText(this, "Filter: Nearest", Toast.LENGTH_SHORT).show());
         btnSuggestion.setOnClickListener(v -> Toast.makeText(this, "Filter: Suggestion", Toast.LENGTH_SHORT).show());
         btnReview.setOnClickListener(v -> Toast.makeText(this, "Filter: Review", Toast.LENGTH_SHORT).show());
-        btnPrice.setOnClickListener(v -> Toast.makeText(this, "Filter: Price", Toast.LENGTH_SHORT).show());
+//        btnPrice.setOnClickListener(v -> Toast.makeText(this, "Filter: Price", Toast.LENGTH_SHORT).show());
     }
 }

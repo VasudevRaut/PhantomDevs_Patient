@@ -32,5 +32,14 @@ public class Dashboard extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        LinearLayout medical = findViewById(R.id.medical);
+        medical.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Dashboard.this, MedicalListPresenter.class);
+                startActivity(intent);
+            }
+        });
     }
 }

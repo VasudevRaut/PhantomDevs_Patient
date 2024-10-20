@@ -1,6 +1,7 @@
 package com.example.pccoe_oct_2024_hack.UserScreens;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,19 +12,15 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.pccoe_oct_2024_hack.Adapters.UserAdapter;
 import com.example.pccoe_oct_2024_hack.Adapters.UserMedicalHistoryAdapter;
-import com.example.pccoe_oct_2024_hack.DTO.User;
+import com.example.pccoe_oct_2024_hack.Adapters.UserMedicalHistoryWithCheckBoxAdapter;
 import com.example.pccoe_oct_2024_hack.DTO.UserMedicalHistoryDTO;
 import com.example.pccoe_oct_2024_hack.R;
-import androidx.appcompat.widget.SearchView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class UserMedicalHistoryPresenter extends AppCompatActivity {
+public class UserMedicalHistoryWithCeckboxPresenter extends AppCompatActivity {
     private SearchView searchView;
     private RecyclerView recyclerView;
 
@@ -34,8 +31,7 @@ public class UserMedicalHistoryPresenter extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_medical_history_view);
-
+        setContentView(R.layout.activity_user_medical_history_with_ceckbox_presenter);
         searchView = findViewById(R.id.searchView);
         selectedHistory = new ArrayList<>();
 
@@ -56,12 +52,12 @@ public class UserMedicalHistoryPresenter extends AppCompatActivity {
         userList.add(new UserMedicalHistoryDTO(false));
         userList.add(new UserMedicalHistoryDTO(false));
 
-        UserMedicalHistoryAdapter userAdapter = new UserMedicalHistoryAdapter(this,userList, new UserMedicalHistoryAdapter.OnItemClickListener() {
+        UserMedicalHistoryWithCheckBoxAdapter userAdapter = new UserMedicalHistoryWithCheckBoxAdapter(this,userList, new UserMedicalHistoryWithCheckBoxAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(UserMedicalHistoryDTO user) {
 
             }
-        }, new UserMedicalHistoryAdapter.OnCheckedChangeListener() {
+        }, new UserMedicalHistoryWithCheckBoxAdapter.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(UserMedicalHistoryDTO userMedicalHistoryDTO, boolean isChecked) {
                 if(isChecked){
@@ -84,7 +80,7 @@ public class UserMedicalHistoryPresenter extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 // Handle search query
-                Toast.makeText(UserMedicalHistoryPresenter.this, "Searching for: " + query, Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserMedicalHistoryWithCeckboxPresenter.this, "Searching for: " + query, Toast.LENGTH_SHORT).show();
                 return false;
             }
 
@@ -102,8 +98,8 @@ public class UserMedicalHistoryPresenter extends AppCompatActivity {
 
             if (isChecked) {
                 // This line will execute when the checkbox is checked
-               userAdapter.selectAllItems(true);
-               selectedHistory.addAll(userList);
+                userAdapter.selectAllItems(true);
+                selectedHistory.addAll(userList);
                 Toast.makeText(this, "Come", Toast.LENGTH_SHORT).show();
             } else {
                 // This line will execute when the checkbox is unchecked
@@ -119,7 +115,7 @@ public class UserMedicalHistoryPresenter extends AppCompatActivity {
         Button shareButton = findViewById(R.id.shareButton);
         shareButton.setOnClickListener(v -> {
 
-                    Toast.makeText(this, "Slot: "  + " Mode: " , Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Slot: "  + " Mode: " , Toast.LENGTH_SHORT).show();
 
         });
 
