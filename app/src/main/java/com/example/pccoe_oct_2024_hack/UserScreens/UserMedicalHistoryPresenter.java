@@ -15,12 +15,16 @@ import android.widget.Toast;
 
 import com.example.pccoe_oct_2024_hack.Adapters.UserAdapter;
 import com.example.pccoe_oct_2024_hack.Adapters.UserMedicalHistoryAdapter;
+import com.example.pccoe_oct_2024_hack.Adapters.UserMedicalHistoryWithCheckBoxAdapter;
 import com.example.pccoe_oct_2024_hack.DTO.User;
 import com.example.pccoe_oct_2024_hack.DTO.UserMedicalHistoryDTO;
 import com.example.pccoe_oct_2024_hack.Database.ReportManager;
 import com.example.pccoe_oct_2024_hack.R;
+import com.example.pccoe_oct_2024_hack.ShatedPreferences.SharedPrefsHelper;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
@@ -59,43 +63,77 @@ public class UserMedicalHistoryPresenter extends AppCompatActivity {
         // Set up RecyclerView with a layout manager (e.g., LinearLayoutManager)
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<UserMedicalHistoryDTO> userList = new ArrayList<>();
-        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
-                .setPersistenceEnabled(false)
-                .build();
-        FirebaseFirestore.getInstance().setFirestoreSettings(settings);
-        new ReportManager().getAllData(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
 
-                userList.addAll(queryDocumentSnapshots.toObjects(UserMedicalHistoryDTO.class));
-                userAdapter = new UserMedicalHistoryAdapter(UserMedicalHistoryPresenter.this,userList, new UserMedicalHistoryAdapter.OnItemClickListener() {
+
+
+
+
+
+
+
+
+
+
+
+
+        SharedPrefsHelper sharedPrefsHelper = new SharedPrefsHelper(this);
+
+        User savedUser = sharedPrefsHelper.getObject("user", User.class);
+
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+
+        firestore.collection("patients")
+                .document(savedUser.getPatientEmail())
+                .collection("reports")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onItemClick(UserMedicalHistoryDTO user) {
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            QuerySnapshot queryDocumentSnapshots = task.getResult();
+                            if (queryDocumentSnapshots != null) {
+                                userList.addAll(queryDocumentSnapshots.toObjects(UserMedicalHistoryDTO.class));
+                                userAdapter = new UserMedicalHistoryAdapter(UserMedicalHistoryPresenter.this,userList, new UserMedicalHistoryAdapter.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(UserMedicalHistoryDTO user) {
 
-                    }
-                }, new UserMedicalHistoryAdapter.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(UserMedicalHistoryDTO userMedicalHistoryDTO, boolean isChecked) {
-                        if(isChecked){
-                            selectedHistory.add(userMedicalHistoryDTO);
-                        }
-                        else{
-                            selectedHistory.remove(userMedicalHistoryDTO);
-                        }
+                                    }
+                                }, new UserMedicalHistoryAdapter.OnCheckedChangeListener() {
+                                    @Override
+                                    public void onCheckedChanged(UserMedicalHistoryDTO userMedicalHistoryDTO, boolean isChecked) {
+                                        if(isChecked){
+                                            selectedHistory.add(userMedicalHistoryDTO);
+                                        }
+                                        else{
+                                            selectedHistory.remove(userMedicalHistoryDTO);
+                                        }
 //                Toast.makeText(UserMedicalHistoryPresenter.this, ""+isChecked, Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                                recyclerView.setAdapter(userAdapter);
+                                recyclerView.setLayoutManager(new LinearLayoutManager(UserMedicalHistoryPresenter.this));
+                            }
+                        } else {
+                            // Handle the error
+                        }
                     }
                 });
 
-                recyclerView.setAdapter(userAdapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(UserMedicalHistoryPresenter.this));
-            }
-        }, new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
 
-            }
-        });
+
+
+
+
+
+
+
+
+
+
+
+
 
         // Add data to the userList
 //        userList.add(new UserMedicalHistoryDTO(false));

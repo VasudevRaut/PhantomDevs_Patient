@@ -1,5 +1,6 @@
 package com.example.pccoe_oct_2024_hack.UserScreens;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +12,11 @@ import com.example.pccoe_oct_2024_hack.Adapters.UserAdapter;
 import com.example.pccoe_oct_2024_hack.DTO.SheduleAppointmentDTO;
 import com.example.pccoe_oct_2024_hack.DTO.User;
 import com.example.pccoe_oct_2024_hack.R;
+import com.example.pccoe_oct_2024_hack.ShatedPreferences.SharedPrefsHelper;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,48 +34,40 @@ public class SheduleAppointmentView extends AppCompatActivity {
         // Add data to the userList
 
 
-        try {
-            SheduleAppointmentDTO appointment1 = new SheduleAppointmentDTO(
-                    "Dr. John Doe",
-                    "123 Medical Lane, Springfield",
-                    45,
-                    500.0,
-                    "General Practitioner",
-                    new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2024-11-15 10:30"),
-                    "Online"
-            );
-            userList.add(appointment1);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+        SharedPrefsHelper sharedPrefsHelper = new SharedPrefsHelper(this);
 
-// Dummy data object 2
-        try {
-            SheduleAppointmentDTO appointment2 = new SheduleAppointmentDTO(
-                    "Dr. Sarah Smith",
-                    "456 Health Ave, Shelbyville",
-                    38,
-                    750.0,
-                    "Cardiologist",
-                    new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2024-12-01 14:00"),
-                    "Offline"
+        User savedUser = sharedPrefsHelper.getObject("user", User.class);
 
-            );
-            userList.add(appointment2);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+
+        firestore.collection("patients")
+                .document(savedUser.getPatientEmail())
+                .collection("appointments")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            QuerySnapshot queryDocumentSnapshots = task.getResult();
+                            if (queryDocumentSnapshots != null) {
+                                userList.addAll(queryDocumentSnapshots.toObjects(SheduleAppointmentDTO.class));
+                                SheduleAppointmentAdapter userAdapter = new SheduleAppointmentAdapter(SheduleAppointmentView.this,userList, new SheduleAppointmentAdapter.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(SheduleAppointmentDTO user) {
+
+                                    }
+                                });
+                                recyclerView.setAdapter(userAdapter);
+                                recyclerView.setLayoutManager(new LinearLayoutManager(SheduleAppointmentView.this));
+                            }
+                        } else {
+                            // Handle the error
+                        }
+                    }
+                });
 
 
 
-        SheduleAppointmentAdapter userAdapter = new SheduleAppointmentAdapter(this,userList, new SheduleAppointmentAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(SheduleAppointmentDTO user) {
-
-            }
-        });
-        recyclerView.setAdapter(userAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
 }

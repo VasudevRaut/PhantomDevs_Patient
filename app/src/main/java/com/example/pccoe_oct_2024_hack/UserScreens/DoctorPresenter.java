@@ -54,10 +54,11 @@ public class DoctorPresenter extends AppCompatActivity {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
                 userList.addAll(queryDocumentSnapshots.toObjects(DoctorDTO.class));
-                DoctorAdapter userAdapter = new DoctorAdapter(userList, new DoctorAdapter.OnItemClickListener() {
+                DoctorAdapter userAdapter = new DoctorAdapter(DoctorPresenter.this,userList, new DoctorAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(DoctorDTO user) {
                         Intent intent = new Intent(DoctorPresenter.this, SlotBookingPresenter.class);
+                        intent.putExtra("doctor",user);
                         startActivity(intent);
                     }
 

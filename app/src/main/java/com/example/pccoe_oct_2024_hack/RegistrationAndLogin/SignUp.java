@@ -17,6 +17,7 @@ import com.example.pccoe_oct_2024_hack.DTO.User;
 import com.example.pccoe_oct_2024_hack.Database.UserManager;
 import com.example.pccoe_oct_2024_hack.LocationHelper.GetLocation;
 import com.example.pccoe_oct_2024_hack.R;
+import com.example.pccoe_oct_2024_hack.ShatedPreferences.SharedPrefsHelper;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
@@ -73,9 +74,17 @@ public class SignUp extends AppCompatActivity {
                     lat = location.get(0);
                     longi = location.get(1);
                 }
-                User user =  new User(emailEditText.getText().toString(),firstNameEditText.getText().toString(), 20,genderEditText.getText().toString(),bloodGroupEditText.getText().toString(),lat,longi);
+                User user =  new User(emailEditText.getText().toString(),firstNameEditText.getText().toString(),numberEditText.getText().toString(), 20,genderEditText.getText().toString(),bloodGroupEditText.getText().toString(),lat,longi);
 
-        new UserManager().addData(user, user.getUserEmail(), new OnSuccessListener<Void>() {
+
+                SharedPrefsHelper sharedPrefsHelper = new SharedPrefsHelper(SignUp.this);
+//                User user = new User("patient5@example.com", "Vasudev Raut", "7387579     912", 50, "Male", "O+", 18.5204, 73.8567);
+                sharedPrefsHelper.saveObject("user", user);
+
+//                User savedUser = sharedPrefsHelper.getObject("user", User.class);
+
+
+                new UserManager().addData(user, user.getPatientEmail(), new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(SignUp.this, "Register successfully", Toast.LENGTH_SHORT).show();

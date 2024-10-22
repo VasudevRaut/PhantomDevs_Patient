@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    android:background="@color/cl_black"
+    android:background="@color/activity_bg"
+
+
 
     tools:context=".UserScreens.HomeScreen">
 
@@ -21,27 +23,35 @@
 
         android:orientation="vertical">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="0dp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Health Shastra"
-            android:textColor="@color/cl_green"
-            android:textSize="30sp" />
+            android:orientation="vertical">
+            <!--title-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="0dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Dashboard"
+                android:textColor="@color/blue"
+                android:textSize="30sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Your personalized gateway to everything you need"
-            android:textColor="@color/cl_faint_green"
-            android:textSize="10sp" />
+            <!--sub-title-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Your hub for insights, history, and management."
+                android:textColor="@color/light_blue"
+                android:textSize="12sp" />
+
+        </LinearLayout>
 
 
         <androidx.core.widget.NestedScrollView
@@ -58,7 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:background="@drawable/edittext_background"
+                    android:background="@drawable/one"
 
                     app:cardCornerRadius="15dp">
 
@@ -119,7 +129,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:background="@drawable/edittext_background"
+                    android:background="@drawable/one"
 
                     app:cardCornerRadius="15dp">
 
@@ -182,7 +192,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:background="@drawable/edittext_background"
+                    android:background="@drawable/one"
 
                     app:cardCornerRadius="15dp">
 
@@ -239,11 +249,11 @@
 
                 <!-- Card 1 -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:id="@+id/medicallist"
-                    android:background="@drawable/edittext_background"
+                    android:background="@drawable/one"
 
                     app:cardCornerRadius="15dp">
 
@@ -363,7 +373,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:background="@drawable/edittext_background"
+                    android:background="@drawable/one"
 
                     app:cardCornerRadius="15dp">
 
@@ -422,7 +432,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:background="@drawable/edittext_background"
+                    android:background="@drawable/one"
 
                     app:cardCornerRadius="15dp">
 

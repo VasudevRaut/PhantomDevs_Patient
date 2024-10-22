@@ -1,5 +1,8 @@
 package com.example.pccoe_oct_2024_hack.DTO;
-public class SlotDTO {
+
+import java.io.Serializable;
+
+public class SlotDTO implements Serializable {
 
     private String timeRange;
     private boolean isBooked;

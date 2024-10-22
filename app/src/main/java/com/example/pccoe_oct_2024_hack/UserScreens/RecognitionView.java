@@ -173,11 +173,11 @@ public class RecognitionView extends AppCompatActivity {
                         System.out.println("Error: " + error.toString());
                         if (error.networkResponse != null) {
                             String body = new String(error.networkResponse.data);
-                            Toast.makeText(RecognitionView.this, ""+body, Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(RecognitionView.this, ""+body, Toast.LENGTH_SHORT).show();
 
                             System.out.println("Error Response: " + body);
                         } else {
-                            Toast.makeText(RecognitionView.this, ""+error.toString(), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(RecognitionView.this, ""+error.toString(), Toast.LENGTH_SHORT).show();
 
                             System.out.println("Error: " + error.toString());
                         }

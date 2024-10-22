@@ -14,7 +14,7 @@ public class UserNotification extends BaseNotification {
     @Override
     protected NotificationContent getNotificationContent() {
         String title = "Welcome!";
-        String message = "Hello, " + userName + "! Thanks for joining us.";
+        String message = "Hello, You have an new Notification.";
         return new NotificationContent(title, message);
     }
 }

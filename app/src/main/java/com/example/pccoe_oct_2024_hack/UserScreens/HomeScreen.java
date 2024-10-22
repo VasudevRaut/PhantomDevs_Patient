@@ -4,10 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.example.pccoe_oct_2024_hack.MainActivity;
+import com.example.pccoe_oct_2024_hack.Norification.UserNotification;
 import com.example.pccoe_oct_2024_hack.R;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import javax.annotation.Nullable;
 
 public class HomeScreen extends AppCompatActivity {
 
@@ -15,6 +25,7 @@ public class HomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+//        listenForNotifications();
 
         LinearLayout medicalHistory = findViewById(R.id.responces);
         medicalHistory.setOnClickListener(new View.OnClickListener() {
@@ -78,4 +89,8 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
     }
+
+
+
+
 }

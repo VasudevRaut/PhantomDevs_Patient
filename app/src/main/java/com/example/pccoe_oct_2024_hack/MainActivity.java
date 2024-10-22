@@ -81,7 +81,9 @@ public class MainActivity extends AppCompatActivity {
         FirebaseFirestore db;
         db = FirebaseFirestore.getInstance();
 
-        db.collection("Notifications")
+        db.collection("patients")
+                .document("vasudevraut9912@gmail.com")
+                .collection("appointments")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException e) {

@@ -5,6 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.pccoe_oct_2024_hack.DTO.SlotDTO;
+
 import java.util.List;
 
 public abstract class BaseAdapter<T, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
@@ -46,4 +49,5 @@ public abstract class BaseAdapter<T, VH extends RecyclerView.ViewHolder> extends
         this.dataList = newData;
         notifyDataSetChanged();
     }
+
 }

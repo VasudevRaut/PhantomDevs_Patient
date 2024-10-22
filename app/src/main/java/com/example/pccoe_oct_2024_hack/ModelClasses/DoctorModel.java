@@ -1,14 +1,13 @@
-package com.example.pccoe_oct_2024_hack.DTO;
+package com.example.pccoe_oct_2024_hack.ModelClasses;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 
-public class DoctorDTO implements Serializable {
+public class DoctorModel implements Serializable {
     private String docName;
     private String docMobileNumber;
     private String docEmail;
-
+    List<Integer> timeSlot;
     private List<String> docSpecializations;
 
     private double docLat;
@@ -18,14 +17,15 @@ public class DoctorDTO implements Serializable {
     private int totalBookedSlots;
     private int totalRevenue;
     private int charges;
-    private List<Integer> timeSlot;
-    public DoctorDTO() {
+
+    public DoctorModel() {
     }
 
-    public DoctorDTO(String docName, String docMobileNumber, String docEmail, List<String> docSpecializations, double docLat, double docLang, int experience, int totalBookedSlots, int totalRevenue, int charges, List<Integer> timeSlot) {
+    public DoctorModel(String docName, String docMobileNumber, String docEmail, List<Integer> timeSlot, List<String> docSpecializations, double docLat, double docLang, int experience, int totalBookedSlots, int totalRevenue, int charges) {
         this.docName = docName;
         this.docMobileNumber = docMobileNumber;
         this.docEmail = docEmail;
+        this.timeSlot = timeSlot;
         this.docSpecializations = docSpecializations;
         this.docLat = docLat;
         this.docLang = docLang;
@@ -33,7 +33,6 @@ public class DoctorDTO implements Serializable {
         this.totalBookedSlots = totalBookedSlots;
         this.totalRevenue = totalRevenue;
         this.charges = charges;
-        this.timeSlot = timeSlot;
     }
 
     public List<Integer> getTimeSlot() {
@@ -67,9 +66,6 @@ public class DoctorDTO implements Serializable {
     public void setDocEmail(String docEmail) {
         this.docEmail = docEmail;
     }
-
-
-
 
     public List<String> getDocSpecializations() {
         return docSpecializations;

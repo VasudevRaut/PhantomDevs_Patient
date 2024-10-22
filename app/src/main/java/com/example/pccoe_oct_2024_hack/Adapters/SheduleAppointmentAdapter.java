@@ -50,10 +50,10 @@ public class SheduleAppointmentAdapter extends BaseAdapter<SheduleAppointmentDTO
         });
         //set here value to lebel
         holder.name.setText(user.getDoctorName());
-        holder.address.setText(user.getDoctorAddress());
-        holder.Time.setText(user.getAppointmentDate()+"");
-        holder.charges.setText(String.valueOf(user.getDoctorFee())); // Convert to string if it's a number
-        holder.type.setText(user.getDoctorType());
+        holder.address.setText(user.getAppointmentStartTime());
+        holder.Time.setText(user.getAppointmentEndTime()+"");
+        holder.charges.setText(user.getAppointmentDate()); // Convert to string if it's a number
+        holder.type.setText(user.getAppointmentStatus());
         holder.videocall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

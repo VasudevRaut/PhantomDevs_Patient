@@ -17,7 +17,7 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo1"
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo1"
         android:supportsRtl="true"
@@ -46,19 +46,26 @@
             android:exported="false" />
         <activity
             android:name=".UserScreens.UplodeDocumentView"
-            android:exported="true" />
+            android:exported="true" >
+
+        </activity>
         <activity
             android:name=".UserScreens.SheduleAppointmentView"
             android:exported="false" />
         <activity
             android:name=".UserScreens.HomeScreen"
-            android:exported="true" />
+            android:exported="true" >
+
+
+        </activity>
         <activity
             android:name=".UserScreens.MedicalListPresenter"
             android:exported="false" />
         <activity
             android:name=".UserScreens.UserMedicalHistoryWithCeckboxPresenter"
-            android:exported="false" />
+            android:exported="true" >
+
+        </activity>
         <activity
             android:name=".UserScreens.SlotBookingPresenter"
             android:exported="true" />
@@ -67,7 +74,9 @@
             android:exported="false" />
         <activity
             android:name=".UserScreens.UserMedicalHistoryPresenter"
-            android:exported="false" />
+            android:exported="true" >
+
+        </activity>
         <activity
             android:name=".UserScreens.Dashboard"
             android:exported="true" />
@@ -86,11 +95,13 @@
         <activity
             android:name=".SplashScreenSlider.Splash_Screen"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".MainActivity"
@@ -103,6 +114,9 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

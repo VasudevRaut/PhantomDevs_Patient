@@ -1,12 +1,11 @@
-package com.example.pccoe_oct_2024_hack.DTO;
+package com.example.pccoe_oct_2024_hack.ModelClasses;
 
-import java.util.Date;
+import java.io.Serializable;
 
-public class SheduleAppointmentDTO {
+public class AppointmentModel implements Serializable {
     private String appointmentID;
     private String patientEmail;
     private String doctorEmail;
-    private String doctorName;
     private String appointmentPatientName;
     private String appointmentDate;
     private String appointmentStartTime;
@@ -16,37 +15,18 @@ public class SheduleAppointmentDTO {
     //added
     private String appointmentLink;
 
-    public SheduleAppointmentDTO() {
+    public AppointmentModel() {
     }
 
-    public SheduleAppointmentDTO(String appointmentID, String patientEmail, String doctorEmail, String doctorName, String appointmentPatientName, String appointmentDate, String appointmentStartTime, String appointmentEndTime, String appointmentStatus, String appointmentLink) {
+    public AppointmentModel(String appointmentID, String patientEmail, String doctorEmail, String appointmentPatientName, String appointmentDate, String appointmentStartTime, String appointmentEndTime, String appointmentStatus) {
         this.appointmentID = appointmentID;
         this.patientEmail = patientEmail;
         this.doctorEmail = doctorEmail;
-        this.doctorName = doctorName;
         this.appointmentPatientName = appointmentPatientName;
         this.appointmentDate = appointmentDate;
         this.appointmentStartTime = appointmentStartTime;
         this.appointmentEndTime = appointmentEndTime;
         this.appointmentStatus = appointmentStatus;
-        this.appointmentLink = appointmentLink;
-    }
-
-
-    public String getDoctorName() {
-        return doctorName;
-    }
-
-    public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
-    }
-
-    public String getAppointmentLink() {
-        return appointmentLink;
-    }
-
-    public void setAppointmentLink(String appointmentLink) {
-        this.appointmentLink = appointmentLink;
     }
 
     public String getAppointmentID() {

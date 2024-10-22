@@ -5,56 +5,10 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:background="#f5fafe"
+    android:background="@color/activity_bg"
     tools:context=".UserScreens.MedicalListPresenter">
 
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@drawable/top_curve"
-        android:elevation="4dp"
-        android:outlineAmbientShadowColor="#343341"
-        android:outlineSpotShadowColor="#343341"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/user_image"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="8dp"
-                app:cardCornerRadius="5dp">
-
-                <ImageView
-                    android:id="@+id/account"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-
-                    android:src="@drawable/logo1" />
-
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:id="@+id/userName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="60dp"
-
-                android:layout_toEndOf="@id/user_image"
-                android:fontFamily="sans-serif"
-                android:text="Order Medicine"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </RelativeLayout>
-    </androidx.appcompat.widget.Toolbar>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -82,6 +36,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:queryHint="Search Medical" />
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_below="@+id/searchView2"
@@ -98,54 +53,69 @@
             android:gravity="center">
 
             <!-- Nearest filter button -->
-            <Button
-                android:id="@+id/btn_nearest"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Nearest"
-                android:textSize="10dp"
-                android:backgroundTint="@color/teal_200"
-                android:textColor="@android:color/white" />
+                android:gravity="center"
+                android:orientation="horizontal">
 
-            <!-- Suggestion filter button -->
-            <Button
-                android:textSize="10dp"
+                <!-- Nearest filter button -->
+                <Button
+                    android:id="@+id/btn_nearest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/one"
+                    android:fontFamily="@font/poppins"
+                    android:text="Nearest"
+                    android:textAllCaps="false"
+                    android:textColor="@color/blue"
+                    android:textSize="10dp" />
 
-                android:id="@+id/btn_suggestion"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Suggestion"
-                android:backgroundTint="@color/teal_200"
-                android:textColor="@android:color/white"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp" />
+                <!-- Suggestion filter button -->
+                <Button
+                    android:id="@+id/btn_suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/one"
+                    android:fontFamily="@font/poppins"
+                    android:text="Suggestion"
+                    android:textAllCaps="false"
+                    android:textColor="@color/blue"
+                    android:textSize="10dp"
 
-            <!-- Review filter button -->
-            <Button
-                android:textSize="10dp"
+                    />
 
-                android:id="@+id/btn_review"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Review"
-                android:backgroundTint="@color/teal_200"
-                android:textColor="@android:color/white" />
+                <!-- Review filter button -->
+                <Button
+                    android:id="@+id/btn_review"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/one"
+                    android:fontFamily="@font/poppins"
+                    android:text="Review"
+                    android:textAllCaps="false"
+                    android:textColor="@color/blue"
+                    android:textSize="10dp"
+                    android:visibility="gone" />
 
-            <!-- Price filter button -->
-            <Button
-                android:textSize="10dp"
+                <!-- Price filter button -->
+                <Button
+                    android:id="@+id/btn_price"
 
-                android:id="@+id/btn_price"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Price"
-                android:backgroundTint="@color/teal_200"
-                android:textColor="@android:color/white"
-                android:layout_marginStart="8dp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/one"
+                    android:fontFamily="@font/poppins"
+                    android:text="Price"
+                    android:textAllCaps="false"
+                    android:textColor="@color/blue"
+                    android:textSize="10dp"
+
+                    />
+            </LinearLayout>
         </LinearLayout>
 
 

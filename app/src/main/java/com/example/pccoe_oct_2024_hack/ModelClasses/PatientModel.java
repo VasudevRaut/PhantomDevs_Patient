@@ -1,11 +1,8 @@
-package com.example.pccoe_oct_2024_hack.DTO;
-
-
-
+package com.example.pccoe_oct_2024_hack.ModelClasses;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class PatientModel implements Serializable {
     private String patientEmail;
     private String patientName;
     private String patientContactNo;
@@ -15,10 +12,10 @@ public class User implements Serializable {
     private double lat;
     private double lang;
 
-    public User() {
+    public PatientModel() {
     }
 
-    public User(String patientEmail, String patientName, String patientContactNo, int patientAge, String patientGender, String patientBloodGroup, double lat, double lang) {
+    public PatientModel(String patientEmail, String patientName, String patientContactNo, int patientAge, String patientGender, String patientBloodGroup, double lat, double lang) {
         this.patientEmail = patientEmail;
         this.patientName = patientName;
         this.patientContactNo = patientContactNo;
